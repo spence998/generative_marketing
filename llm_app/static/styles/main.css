@@ -1,0 +1,15 @@
+.header {
+    padding: 10px;
+    text-align: left;
+    background: #006A4D;
+    color: white;
+    font-size: 20px;
+  }
+.btn-custom {
+    background-color: #006A4D; /* Change this to your desired color */
+    color: #ffffff; /* Change this to your desired text color */
+    /* Add any additional styles as needed */
+}
+.form-select {
+    width: 100px; /* Adjust the width as needed */
+}
