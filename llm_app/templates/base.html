@@ -6,20 +6,20 @@
     <title>Generative Commercial Marketing</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
     <div class="header" >
-        <img src="\static\images\lbg_logo.png" height="80">
+        <a href="/"><img src="\static\images\lbg_logo.png" height="80px"></a>
+        <a href="/" class="home-button"><i class="fa fa-home" style="font-size: 70px"></i></a>
     </div>
 
-    <div class="container mt-5 mb-5">
-        <div class="row col-6 mx-auto flex-column align-items-center">
-            {% block content %}
 
-            {% endblock %}
-        </div>
-    </div>
+    {% block content %}
+
+    {% endblock %}
+
 
 </body>
 </html>

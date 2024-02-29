@@ -1,15 +1,29 @@
 .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px;
-    text-align: left;
     background: #006A4D;
     color: white;
     font-size: 20px;
-  }
+}
 .btn-custom {
-    background-color: #006A4D; /* Change this to your desired color */
-    color: #ffffff; /* Change this to your desired text color */
-    /* Add any additional styles as needed */
+    background-color: #006A4D;
+    color: white;
 }
 .form-select {
-    width: 100px; /* Adjust the width as needed */
+    width: 100px;
+}
+.form-select-changes {
+    width: 120px;
+}
+.generated-output-text {
+    margin-left: 10px;
+    font-size: 20px;
+}
+.home-button {
+    color: white;
+    margin-left: auto; 
+    margin-right: auto;
+    padding-right: 160px;
 }

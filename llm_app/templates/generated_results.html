@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 mb-5">
+    <h1 class="mb-3">Generated marketing content:</h1>
+
+    <div class="mb-5">
+            <div class="mb-3">
+                <h3>Headline:</h3>
+                <span class="generated-output-text">{{ headline }}</span>
+            </div>
+            <div class="mb-3">
+                <h3>Description: </h3>
+                <span class="generated-output-text">{{ description }}</span>
+
+            </div>
+            <div class="mb-3">
+                <h3>Call to action: </h3>
+                <span class="generated-output-text">{{ cta }}</span>
+            </div>
+        <br><br>
+        <form method='POST' action="{{ url_for('view_results') }}" enctype='multipart/form-data'>
+            <div class="mb-1">
+                <label class="form-label">Which section would you like to request changes for?</label>
+                <select class="form-select-changes" name="component">
+                    <option value="headline" selected="selected">Headline</option>
+                    <option value="description">Description</option>
+                    <option value="cta">Call to action</option>
+                </select>
+            </div>
+            <div  class="mb-3">
+                <textarea class="form-control" name="request_headline_edit" rows="2"></textarea>
+            </div>
+            <div class="mb-5">
+                <button type="submit" class="btn btn-custom">Request changes</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

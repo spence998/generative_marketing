@@ -1,16 +1,16 @@
 campaign_options = [
     "Fraud",
     "Insurance",
-    "Int Payments",
+    "International Payments",
 ]
 
-content_size = [
-    "Extra small",
-    "Small",
-    "Medium",
-    "Large",
-    "Extra large",
-]
+content_size = {
+    "Extra small": "less than 10 words",
+    "Small": "between 10 and 20 words",
+    "Medium": "between 20 and 40 words",
+    "Large": "between 40 and 60 words",
+    "Extra large": "more than 60 words",
+}
 
 business_size = [
     "Small",
@@ -20,5 +20,6 @@ business_size = [
 ]
 
 industry = [
-
+    "Farming",
+    "Any",
 ]

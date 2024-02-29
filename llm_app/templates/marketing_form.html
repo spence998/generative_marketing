@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Input Marketing Idea</h1>
+<div class="container mt-5 mb-5">
+  <div class="row col-6 mx-auto flex-column align-items-center">
+    <h1>Generative Marketing Idea</h1>
       
     <form method='POST' action=" {{ url_for('index') }} " enctype='multipart/form-data' class="mt-5">
       <div class="mb-3">
@@ -16,8 +18,8 @@
       </div>
       <div class="mb-3">
         <div class="d-flex justify-content-between">
-          <label class="form-label">Size of material:</label>
-          <select class="form-select" name="topic_dropdown">
+          <label class="form-label">Size of material to create:</label>
+          <select class="form-select" name="material_size">
             {% for size in content_size %}
               <option {% if size=="Medium" %}selected="selected"{% endif %} >{{ size }}</option>
             {% endfor %}
@@ -27,7 +29,7 @@
       <div class="mb-3">
         <div class="d-flex justify-content-between">
           <label class="form-label">Business size for content:</label>
-          <select class="form-select" name="topic_dropdown">
+          <select class="form-select" name="business_size">
             {% for size in business_size %}
               <option {% if size=="Any" %}selected="selected"{% endif %} >{{ size }}</option>
             {% endfor %}
@@ -35,13 +37,26 @@
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Other details</label>
-        <input type="text" class="form-control" name="other_details">
+        <div class="d-flex justify-content-between">
+          <label class="form-label">Industry for content:</label>
+          <select class="form-select" name="industry">
+            {% for ind in industry %}
+              <option {% if ind=="Any" %}selected="selected"{% endif %} >{{ ind }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Aim of the content:</label>
+        <div>(E.g. "To attract customers for opening additional banks accounts online")</div>
+        <textarea class="form-control" name="aim" rows="4"></textarea>
       </div>
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" required="true">
-        <label class="form-check-label">I understand each request incurs a cost</label>
+        <label class="form-check-label">Please tick</label>
       </div>
       <button type="submit" class="btn btn-custom">Submit</button>
     </form>
+  </div>
+</div>
 {% endblock %}
