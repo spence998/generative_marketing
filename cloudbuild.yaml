@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'  # Build Docker image
+  args: ['build', '-t', 'gcr.io/playpen-fa38ad/llm-web-app:latest', '.']
+- name: 'gcloud'  # Deploy to Cloud Run
+  args: ['run', 'deploy', 'your-app-service', 
+          '--image', 'gcr.io/playpen-fa38ad/llm-web-app:latest',
+          '--region', 'europe-west2-b']
