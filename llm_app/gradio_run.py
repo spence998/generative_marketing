@@ -67,10 +67,15 @@ def process_data(
 
 
 def main():
-    if not os.getenv("IS_TESTING"):
-    shell_output=!gcloud config list --format 'value(core.project)' 2>/dev/null
-    PROJECT_ID = shell_output[0]
-    print("Project ID: ", PROJECT_ID)
+
+    # For if you are running in a notebook
+    # if not os.getenv("IS_TESTING"):
+        # shell_output=!gcloud config list --format 'value(core.project)' 2>/dev/null
+        # PROJECT_ID = shell_output[0]
+        # print("Project ID: ", PROJECT_ID)
+    # else:
+    # For if you are running as a script
+    PROJECT_ID = "playpen-fa38ad"
 
     BUCKET_NAME="playpen-basic-gcp_dv_npd-" + PROJECT_ID + "-bucket"
     BUCKET_URL="gs://" + BUCKET_NAME
