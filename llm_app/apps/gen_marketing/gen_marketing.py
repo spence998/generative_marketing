@@ -2,7 +2,17 @@ from apps.gen_marketing.CONFIG import content_size
 
 
 def generate_llm_response(prompt):
-    return prompt
+    response = prompt
+    response = remove_quote_marks(response)
+    return response
+
+
+def remove_quote_marks(string):
+    while string[0] in ["\'", '\"', " "]:
+        string = string[1:]
+    while string[-1] in ["\'", '\"', " "]:
+        string = string[:-1]
+    return string
 
 
 def create_marketing_content(
