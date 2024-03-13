@@ -1,3 +1,13 @@
+LOCAL_MODEL = False
+
+LOCAL_MODEL_PATH = r"C:\dev\mistral-7b-openorca.Q4_K_M\mistral-7b-openorca.Q4_K_M.gguf"
+LOCAL_MODEL_TYPE = "mistral"
+
+llm_parameters = {
+    "temperature":0.8,
+    "topK": 40,
+}
+
 campaign_options = [
     "Fraud",
     "Insurance",
