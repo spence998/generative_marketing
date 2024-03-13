@@ -1,8 +1,30 @@
-from apps.gen_marketing.CONFIG import content_size
+from ctransformers import AutoModelForCausalLM
+from google.cloud import aiplatform
 
+from apps.gen_marketing.CONFIG import (
+    content_size,
+    llm_parameters,
+    LOCAL_MODEL,
+    LOCAL_MODEL_PATH,
+    LOCAL_MODEL_TYPE,
+)
+from GCP_CONFIG import PROJECT_ID, REGION
+
+
+if LOCAL_MODEL:
+    llm = AutoModelForCausalLM.from_pretrained(LOCAL_MODEL_PATH, LOCAL_MODEL_TYPE)
+else:
+    aiplatform.init(project=PROJECT_ID, location=REGION)
+    endpoint_name = "projects/689526501683/locations/europe-west2/endpoints/2361214414788493312" 
+    llm = aiplatform.Endpoint(endpoint_name)
+    
 
 def generate_llm_response(prompt):
-    response = prompt
+    if LOCAL_MODEL:
+        response = llm(prompt)
+    else:
+        instances = [{"prompt": prompt}]
+        response = llm.predict(instances=instances, parameters=llm_parameters).predictions[0]["content"]
     response = remove_quote_marks(response)
     return response
 

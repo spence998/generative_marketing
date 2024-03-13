@@ -24,7 +24,6 @@ def index():
         )
         session['content'] = content
         return redirect(url_for('view_results'))
-    
     else:
         return render_template(
             "marketing_form.html",

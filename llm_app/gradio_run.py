@@ -15,25 +15,8 @@ from apps.gen_marketing.gen_marketing import (
     remove_quote_marks,
 )
 
-def generate_llm_response(prompt):
-    instances = [
-        {"prompt": prompt},    
-    ]
-    parameters = {
-        "temperature":0.8,
-        "topK": 40,
-    }
-    return endpoint.predict(
-        instances=instances,
-        parameters=parameters,
-    ).predictions[0]["content"]
 
-
-def format_content_output(headline, description, cta):
-    headline = remove_quote_marks(headline)
-    description = remove_quote_marks(description)
-    cta = remove_quote_marks(cta)
-    
+def format_content_output(headline, description, cta):    
     return  f"""
     <h1>{headline}</h1>
     <p>{description}</p>
@@ -66,32 +49,7 @@ def process_data(
     return format_content_output(headline, description, cta)
 
 
-def main():
-
-    # For if you are running in a notebook
-    # if not os.getenv("IS_TESTING"):
-        # shell_output=!gcloud config list --format 'value(core.project)' 2>/dev/null
-        # PROJECT_ID = shell_output[0]
-        # print("Project ID: ", PROJECT_ID)
-    # else:
-    # For if you are running as a script
-    PROJECT_ID = "playpen-fa38ad"
-
-    BUCKET_NAME="playpen-basic-gcp_dv_npd-" + PROJECT_ID + "-bucket"
-    BUCKET_URL="gs://" + BUCKET_NAME
-    print("Bucket NAME: ", BUCKET_NAME)
-    print("Bucket URL: ", BUCKET_URL)
-
-    REGION = 'europe-west2'  # London
-
-    SERVICE_ACCOUNT = "playpen-fa38ad-consumer-sa@playpen-fa38ad.iam.gserviceaccount.com" 
-
-    aiplatform.init(project=PROJECT_ID, location=REGION)
-
-    endpoint_name = "projects/689526501683/locations/europe-west2/endpoints/2361214414788493312" 
-    aip_endpoint_name = endpoint_name
-    endpoint = aiplatform.Endpoint(aip_endpoint_name)
-    
+def main():    
     interface = gr.Interface(
         fn=process_data,
         inputs=[
