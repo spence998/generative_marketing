@@ -12,7 +12,6 @@ from apps.gen_marketing.gen_marketing import (
     generate_headline,
     generate_main_content,
     generate_cta,
-    remove_quote_marks,
 )
 from apps.gen_marketing.utils import (
     get_marketing_content_columns, 

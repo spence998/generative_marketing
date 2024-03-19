@@ -1,5 +1,4 @@
 from ctransformers import AutoModelForCausalLM
-from google.cloud import aiplatform
 
 from apps.gen_marketing.CONFIG import (
     content_size,
@@ -8,15 +7,21 @@ from apps.gen_marketing.CONFIG import (
     LOCAL_MODEL_PATH,
     LOCAL_MODEL_TYPE,
 )
-from GCP_CONFIG import PROJECT_ID, REGION
-
 
 if LOCAL_MODEL:
-    llm = AutoModelForCausalLM.from_pretrained(LOCAL_MODEL_PATH, LOCAL_MODEL_TYPE)
+    llm = AutoModelForCausalLM.from_pretrained(
+        LOCAL_MODEL_PATH,
+        model_type=LOCAL_MODEL_TYPE,
+    )
+    prompt_prefix = ""
 else:
-    aiplatform.init(project=PROJECT_ID, location=REGION)
-    endpoint_name = "projects/689526501683/locations/europe-west2/endpoints/2361214414788493312" 
-    llm = aiplatform.Endpoint(endpoint_name)
+    from GCP_CONFIG import GCP_llm
+    llm = GCP_llm
+    prompt_prefix = (
+        "You work for a bank creating marketing content. "
+        "The tone of voice must be quietly confident, expert "
+        "and empathetic. "
+    )
     
 
 def generate_llm_response(prompt):
@@ -30,9 +35,9 @@ def generate_llm_response(prompt):
 
 
 def remove_quote_marks(string):
-    while string[0] in ["\'", '\"', " "]:
+    while string[0] in ["\'", '\"', " ", r"\\"]:
         string = string[1:]
-    while string[-1] in ["\'", '\"', " "]:
+    while string[-1] in ["\'", '\"', " ", r"\\"]:
         string = string[:-1]
     return string
 
@@ -78,23 +83,20 @@ def generate_headline(
         industry,
         aim,
 ):
-    if aim == "":
+    if aim != "":
         aim = f"Aim: '{aim}', "
     else:
         aim=""
 
-    headline_prompt = (
-        "You work for a bank creating marketing content. "
-        "The tone of voice must be quietly confident, expert "
-        "and empathetic. Using the following features to guide you, "
-        "create a headline for the business banking ad campaign. "
+    headline_prompt = prompt_prefix + (
+        "You work for a bank creating marketing content. Using the following features to guide you, "
+        "create a headline between 2 and 7 words for the business banking ad. "
         f"Topic: '{topic}', "
-        f"'{aim}'"
+        f"{aim}"
         f"Busines size: '{business_size}', "
         f"Industry: '{industry}'. "
-        "The ad campaign headline is:"
+        "The business banking ad headline is:"
     )
-
     return generate_llm_response(headline_prompt)
     
 
@@ -106,41 +108,33 @@ def generate_main_content(
         industry,
         aim,
 ):
-    main_content_prompt = (
-        "You work for a bank creating marketing content. "
-        "The tone of voice must be quietly confident, expert "
-        "and empathetic. Using the following features to guide you, "
-        "create the main content for the business banking ad "
-        f"campaign {content_size[material_size]}. "
+    main_content_prompt = prompt_prefix + (
+        "You work for a bank creating marketing content. Using the following features to guide you, "
+        "create the main content for the business banking ad"
+        f"campaign {material_size}. "
         f"Headline: '{headline}', "
         f"Topic: '{topic}', "
-        f"'{aim}'"
+        f"{aim}"
         f"Busines size: '{business_size}', "
         f"Industry: '{industry}'. "
-        f"The ad campaign main content {content_size[material_size]} is:"
+        f"The ad campaign main content {material_size} is:"
     )
     return generate_llm_response(main_content_prompt)
 
 
 def generate_cta(main_content):
     cta_prompt = (
-        "You work for a bank creating marketing content. "
-        "The tone of voice must be quietly confident, expert "
-        "and empathetic. Using the following ad content, "
-        "create a call to action. E.g. "
-        "<CONTENT>: 'You can make a payment to an existing payee in our app'"
-        "<CALL TO ACTION>: 'Download the app'"
-        f"<CONTENT>: {main_content}"
-        "<CALL TO ACTION>:"
+        "You work for a bank creating marketing content. Using the following ad content, "
+        "create a call to action between 1 and 5 words." 
+        f"CONTENT: {main_content}"
+        "CALL TO ACTION:"
     )
     return generate_llm_response(cta_prompt)
 
 
 def change_llm_output(component, component_name, change):
-    change_output_prompt = (
-        "You work for a bank creating marketing content. "
-        "The tone of voice must be quietly confident, expert "
-        f"and empathetic. Edit this {component_name} of an ad campaign to "
+    change_output_prompt = prompt_prefix + (
+        f"Edit this {component_name} of an ad campaign to "
         f"{change}. The {component_name} is: '{component}'. The change "
         f"of '{change}' is:"
     )

@@ -71,3 +71,17 @@ def get_filtered_records():
                 "CTA": [],
             }
         )
+    
+def get_all_records():
+    try:
+        return pd.read_csv("apps/gen_marketing/content_data/content_log.csv")
+    except:
+        return pd.DataFrame(
+            {
+                "ID":[],
+                "Content Size": [],
+                "Headline": [],
+                "Main content": [],
+                "CTA": [],
+            }
+        )

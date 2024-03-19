@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row col-15 mx-auto flex-column align-items-center">
+        <div class="boxshaddow">
+            <div class="mb-3" style="text-align: center;"><h1>Content Log</h1></div>
+            <div>
+                <form method='POST' action="{{ url_for('previous_results') }}" enctype='multipart/form-data' class="mt-4">
+                    <div class="ml-5 mr-5 mb-3 d-flex align-items-end">
+                        <div style="flex: 1;">
+                            <label class="form-label">ID Filter</label>
+                            <textarea class="form_input form-control" style="outline: none !important; box-shadow: none;" placeholder="Any..." rows="1" name="id_filter"></textarea>
+                        </div>
+                        <div style="flex: 1; margin-left: 10px;">
+                            <label class="form-label">Content Size Filter</label>
+                            <textarea class="form_input form-control" style="outline: none !important; box-shadow: none;" placeholder="Any..." rows="1" name="content_size_filter"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom ml-3">Filter</button>
+                    </div>
+                </form>
+            </div>
+            <table id="myTable" class="display">
+                {{ table|safe }}
+            </table>
+
+            <script>
+                $(document).ready( function () {
+                    $('#myTable').DataTable();
+                } );
+            </script>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

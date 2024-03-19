@@ -2,61 +2,61 @@
 
 {% block content %}
 <div class="container mt-5 mb-5">
-  <div class="row col-6 mx-auto flex-column align-items-center">
-    <h1>Generative Marketing Idea</h1>
-      
-    <form method='POST' action=" {{ url_for('index') }} " enctype='multipart/form-data' class="mt-5">
-      <div class="mb-3">
-        <div class="d-flex justify-content-between">
-          <label class="form-label">Topic: </label>
-          <select class="form-select" name="topic">
-            {% for topic in campaign_options %}
-              <option>{{ topic }}</option>
-            {% endfor %}
-          </select>
-        </div>
+  <div class="row col-8 mx-auto flex-column align-items-center">
+    <div class = "boxshaddow">
+      <div class="mb-3" style="text-align: center;">
+        <h1>Generative Marketing Idea</h1>
       </div>
-      <div class="mb-3">
-        <div class="d-flex justify-content-between">
-          <label class="form-label">Size of material to create:</label>
-          <select class="form-select" name="material_size">
-            {% for size in content_size %}
-              <option {% if size=="Medium" %}selected="selected"{% endif %} >{{ size }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="d-flex justify-content-between">
-          <label class="form-label">Business size for content:</label>
-          <select class="form-select" name="business_size">
-            {% for size in business_size %}
-              <option {% if size=="Any" %}selected="selected"{% endif %} >{{ size }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="mb-3">
-        <div class="d-flex justify-content-between">
-          <label class="form-label">Industry for content:</label>
-          <select class="form-select" name="industry">
-            {% for ind in industry %}
-              <option {% if ind=="Any" %}selected="selected"{% endif %} >{{ ind }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Aim of the content:</label>
-        <div>(E.g. "To attract customers for opening additional banks accounts online")</div>
-        <textarea class="form-control" name="aim" rows="4"></textarea>
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" required="true">
-        <label class="form-check-label">Please tick</label>
-      </div>
-      <button type="submit" class="btn btn-custom">Submit</button>
-    </form>
+      <div class="mb-2">
+        <form method='POST' action=" {{ url_for('index') }} " enctype='multipart/form-data' class="mt-5">
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <label class="form-label form-label-text">Topic: </label>
+              <select class="form-select form_input" name="topic">
+                {% for topic in campaign_options %}
+                  <option>{{ topic }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <label class="form-label form-label-text">Size of material to create:</label>
+              <select class="form-select form_input" name="material_size">
+                {% for size in content_size %}
+                  <option {% if size=="Medium" %}selected="selected"{% endif %} >{{ size }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <label class="form-label form-label-text">Business size for content:</label>
+              <select class="form-select form_input" name="business_size">
+                {% for size in business_size %}
+                  <option {% if size=="Any" %}selected="selected"{% endif %} >{{ size }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <label class="form-label form-label-text">Industry for content:</label>
+              <textarea class="form_input form-control form-control-sm " style="width: 132px; outline: none !important; box-shadow: none;" placeholder="Any..." rows="1" name="industry"></textarea>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label mb-0 form-label-text">Aim of the content:</label>
+            <div class="mb-2">(E.g. "To attract customers for opening additional banks accounts online")</div>
+            <textarea class="form_input form-control" style="outline: none !important; box-shadow: none;" name="aim" placeholder="Aim..." rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-custom">Submit</button>
+          <a href="/previous-results">
+            <input type="button" class="btn btn-custom" value="View Previous Content" style="float: right;"/>
+          </a>
+        </form>
+      </div> 
+    </div>
   </div>
 </div>
 {% endblock %}
