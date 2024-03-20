@@ -43,7 +43,7 @@ def remove_quote_marks(string):
 
 
 def create_marketing_content(
-        topic,
+        product,
         material_size,
         business_size,
         industry,
@@ -55,14 +55,14 @@ def create_marketing_content(
     for some marketing
     """
     headline = generate_headline(
-        topic,
+        product,
         business_size,
         industry,
         aim,
     )
     description = generate_main_content(
         headline, 
-        topic,
+        product,
         material_size,
         business_size,
         industry,
@@ -78,7 +78,7 @@ def create_marketing_content(
 
 
 def generate_headline(
-        topic,
+        product,
         business_size,
         industry,
         aim,
@@ -91,7 +91,7 @@ def generate_headline(
     headline_prompt = prompt_prefix + (
         "You work for a bank creating marketing content. Using the following features to guide you, "
         "create a headline between 2 and 7 words for the business banking ad. "
-        f"Topic: '{topic}', "
+        f"Product: '{product}', "
         f"{aim}"
         f"Busines size: '{business_size}', "
         f"Industry: '{industry}'. "
@@ -102,7 +102,7 @@ def generate_headline(
 
 def generate_main_content(
         headline,
-        topic,
+        product,
         material_size,
         business_size,
         industry,
@@ -113,7 +113,7 @@ def generate_main_content(
         "create the main content for the business banking ad"
         f"campaign {material_size}. "
         f"Headline: '{headline}', "
-        f"Topic: '{topic}', "
+        f"Product: '{product}', "
         f"{aim}"
         f"Busines size: '{business_size}', "
         f"Industry: '{industry}'. "

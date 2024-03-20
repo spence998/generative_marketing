@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5" style="width: 99pc;">
     <div class="row align-items-center">
         <div class="boxshaddow">
             <div class="mb-3" style="text-align: center;"><h1>Content Log</h1></div>
@@ -11,6 +11,10 @@
                         <div style="flex: 1;">
                             <label class="form-label" style="display: block; margin-bottom: 5px;">ID Filter</label>
                             <textarea class="form_input form-control" placeholder="Any..." rows="1" name="id_filter"></textarea>
+                        </div>
+                        <div style="flex: 1; margin-left: 10px;">
+                            <label class="form-label" style="display: block; margin-bottom: 5px;">Product Filter</label>
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="product_filter"></textarea>
                         </div>
                         <div style="flex: 1; margin-left: 10px;">
                             <label class="form-label" style="display: block; margin-bottom: 5px;">Date From</label>

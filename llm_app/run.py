@@ -21,7 +21,7 @@ from pages import (
 def index():
     if request.method == "POST":
         content = create_marketing_content(
-            topic=campaign_options[request.form["product"]],
+            product=campaign_options[request.form["product"]],
             material_size=content_size[request.form["material_size"]],
             business_size=request.form["business_size"],
             industry=request.form["industry"],
@@ -29,9 +29,11 @@ def index():
         )
         session['content'] = content
         session['id'] = request.form["id_name"]
+        session['product'] = request.form["product"]
         session['material_size'] = request.form["material_size"]
         update_content_log(
-            session['id'], 
+            session['id'],
+            session['product'],
             session['material_size'],
             content["headline"], 
             content["description"], 

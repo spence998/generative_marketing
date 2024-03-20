@@ -4,6 +4,7 @@ from datetime import datetime
 
 def update_content_log(
     id_name,
+    product,
     content_size,
     headline,
     main_content,
@@ -14,7 +15,8 @@ def update_content_log(
     except:
         df = pd.DataFrame(
             {
-                "ID":[],
+                "ID / Name":[],
+                "Product": [],
                 "Datetime": [],
                 "Content Size": [],
                 "Headline": [],
@@ -29,7 +31,8 @@ def update_content_log(
             df,
             pd.DataFrame(
                 {
-                    "ID": [id_name],
+                    "ID / Name": [id_name],
+                    "Product": [product],
                     "Datetime": [str(datetime.now())[:-10]],
                     "Content Size": [content_size],
                     "Headline": [headline],
@@ -68,7 +71,8 @@ def get_filtered_records():
     except:
         return pd.DataFrame(
             {
-                "ID":[],
+                "ID / Name":[],
+                "Product": [],
                 "Datetime": [],
                 "Content Size": [],
                 "Headline": [],
@@ -79,16 +83,22 @@ def get_filtered_records():
     
 
 def get_all_records():
-    try:
-        return pd.read_csv("apps/gen_marketing/content_data/content_log.csv")
-    except:
-        return pd.DataFrame(
-            {
-                "ID":[],
-                "Datetime": [],
-                "Content Size": [],
-                "Headline": [],
-                "Main content": [],
-                "CTA": [],
-            }
+    # try:
+        content_log = pd.read_csv("apps/gen_marketing/content_data/content_log.csv")
+        content_log["Datetime"] = pd.to_datetime(
+            content_log["Datetime"],
+            format='%Y-%m-%d %H:%M',
         )
+        return content_log
+    # except:
+    #     return pd.DataFrame(
+    #         {
+    #             "ID / Name":[],
+    #             "Product": [],
+    #             "Datetime": [],
+    #             "Content Size": [],
+    #             "Headline": [],
+    #             "Main content": [],
+    #             "CTA": [],
+    #         }
+    #     )

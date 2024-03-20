@@ -1,16 +1,5 @@
-ID,Datetime,Content Size,Headline,Main content,CTA
-Spencer,2024-03-20 09:28,Medium,Discover Smart Finance Solutions for Business.,"
-
-""Maximize your business potential with smart finance solutions designed to empower and simplify your financial journey. Unlock the full capabilities of our flexible and efficient business asset finance options, tailored to suit any size or industry.",Experience a seamless financial experience today!
-Missing,2024-03-19 10:37,Medium,"
-
-""Maximize Your Business Growth with Asset Finance Solutions.","
-
-'Unlock the full potential of your business with our comprehensive range of asset finance solutions. Our expert team can help you tailor a package to suit your unique needs, maximizing growth and profitability. Experience the benefits of flexible financing options designed for businesses of any size, in any industry.","Discover Your Custom Asset Finance Package Today'
-
-This call to action invites customers to find out more information on tailoring finance solutions suitable to their specific business needs."
-Testname1,2024-03-18 10:42,Medium,"
-
-""Grow Your Clothing Business with Asset Finance Solutions"".","
-
-""Discover the unique advantage of growing your clothing business through asset finance solutions tailored to meet the needs of businesses of any size. Experience the benefits of flexible financing options, expert advice, and customized payment plans that can help you expand your operations, invest in cutting-edge equipment or machinery, and reach new markets seamlessly. Join thousands of successful clothing entrepreneurs who have harnessed the power of business asset finance to unlock their full potential.",Apply now!
+ID / Name,Product,Datetime,Content Size,Headline,Main content,CTA
+Testname3,Asset Finance,2024-03-20 09:28,Medium,Discover Smart Finance Solutions for Business.,Maximize your business potential with smart finance solutions designed to empower and simplify your financial journey.,Experience a seamless financial experience today!
+Testname2,Asset Finance,2024-03-19 10:37,Large,Maximize Your Business Growth with Asset Finance Solutions.,"Unlock the full potential of your business with our comprehensive range of asset finance solutions. Our expert team can help you tailor a package to suit your unique needs, maximizing growth and profitability.",Discover Your Custom Asset Finance Package Today
+Testname1,Asset Finance,2024-03-18 10:42,Large,Grow Your Clothing Business with Asset Finance Solutions.,Discover the unique advantage of growing your clothing business through asset finance solutions tailored to meet the needs of businesses of any size. Join thousands of successful clothing entrepreneurs who have harnessed the power of business asset finance to unlock their full potential.,Apply now!
+TestName4,Credit Cards,2024-03-20 15:03,Extra small,Affordable Business Credit Cards for Small Companies,Effortlessly manage your business finances with our affordable small company credit cards.,Get started today!
