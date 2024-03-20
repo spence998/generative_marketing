@@ -9,10 +9,14 @@
       </div>
       <div class="mb-2">
         <form method='POST' action=" {{ url_for('index') }} " enctype='multipart/form-data' class="mt-5">
+          <div class="d-flex justify-content-between mb-3">
+            <label class="form-label mb-0 form-label-text">ID / Name:</label>
+            <textarea class="form_input form-control form-control-sm " style="width: 132px; outline: none !important; box-shadow: none;" name="id_name" placeholder="ID..." rows="1"></textarea>
+          </div>
           <div class="mb-3">
             <div class="d-flex justify-content-between">
-              <label class="form-label form-label-text">Topic: </label>
-              <select class="form-select form_input" name="topic">
+              <label class="form-label form-label-text">Product: </label>
+              <select class="form-select form_input" name="product">
                 {% for topic in campaign_options %}
                   <option>{{ topic }}</option>
                 {% endfor %}
@@ -21,7 +25,7 @@
           </div>
           <div class="mb-3">
             <div class="d-flex justify-content-between">
-              <label class="form-label form-label-text">Size of material to create:</label>
+              <label class="form-label form-label-text">Content Size:</label>
               <select class="form-select form_input" name="material_size">
                 {% for size in content_size %}
                   <option {% if size=="Medium" %}selected="selected"{% endif %} >{{ size }}</option>
@@ -31,7 +35,7 @@
           </div>
           <div class="mb-3">
             <div class="d-flex justify-content-between">
-              <label class="form-label form-label-text">Business size for content:</label>
+              <label class="form-label form-label-text">Business Size:</label>
               <select class="form-select form_input" name="business_size">
                 {% for size in business_size %}
                   <option {% if size=="Any" %}selected="selected"{% endif %} >{{ size }}</option>
@@ -41,7 +45,7 @@
           </div>
           <div class="mb-3">
             <div class="d-flex justify-content-between">
-              <label class="form-label form-label-text">Industry for content:</label>
+              <label class="form-label form-label-text">Industry:</label>
               <textarea class="form_input form-control form-control-sm " style="width: 132px; outline: none !important; box-shadow: none;" placeholder="Any..." rows="1" name="industry"></textarea>
             </div>
           </div>
@@ -50,10 +54,10 @@
             <div class="mb-2">(E.g. "To attract customers for opening additional banks accounts online")</div>
             <textarea class="form_input form-control" style="outline: none !important; box-shadow: none;" name="aim" placeholder="Aim..." rows="4"></textarea>
           </div>
-          <button type="submit" class="btn btn-custom">Submit</button>
           <a href="/previous-results">
-            <input type="button" class="btn btn-custom" value="View Previous Content" style="float: right;"/>
+            <input type="button" class="btn btn-custom" value="View Previous Content"/>
           </a>
+          <button type="submit" class="btn btn-custom" style="float: right;">Submit</button>
         </form>
       </div> 
     </div>

@@ -9,17 +9,14 @@
 
             <div class="mb-2">
                     <div class="mb-3">
-                        <h3>Headline:</h3>
-                        <span class="generated-output-text">{{ headline }}</span>
+                        <h2 class="generated-output-text"><strong>{{ headline }}</strong></h2>
                     </div>
                     <div class="mb-3">
-                        <h3>Description: </h3>
-                        <span class="generated-output-text">{{ description }}</span>
+                        <p class="generated-output-text">{{ description }}</p>
 
                     </div>
                     <div class="mb-3">
-                        <h3>Call to action: </h3>
-                        <span class="generated-output-text">{{ cta }}</span>
+                        <h3 class="generated-output-text">{{ cta }}</h3>
                     </div>
                 <br><br>
                 <form method='POST' action="{{ url_for('view_results') }}" enctype='multipart/form-data'>
@@ -37,9 +34,9 @@
                         <textarea class="form_input form-control" style="outline: none !important; box-shadow: none;" name="request_headline_edit" placeholder="Changes..." rows="2"></textarea>
                     </div>
                     <div class="mb-2">
-                        <button type="submit" class="btn btn-custom">Request Changes</button>
+                        <button type="submit" class="btn btn-custom"  style="float: right;">Request Changes</button>
                         <a href="/">
-                            <input type="button" class="btn btn-custom" value="Back" style="float: right;"/>
+                            <input type="button" class="btn btn-custom" value="Back"/>
                         </a>
                     </div>
                 </form>

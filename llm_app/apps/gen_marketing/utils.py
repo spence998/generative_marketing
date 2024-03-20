@@ -1,4 +1,6 @@
 import pandas as pd
+from datetime import datetime
+
 
 def update_content_log(
     id_name,
@@ -13,6 +15,7 @@ def update_content_log(
         df = pd.DataFrame(
             {
                 "ID":[],
+                "Datetime": [],
                 "Content Size": [],
                 "Headline": [],
                 "Main content": [],
@@ -27,6 +30,7 @@ def update_content_log(
             pd.DataFrame(
                 {
                     "ID": [id_name],
+                    "Datetime": [str(datetime.now())[:-10]],
                     "Content Size": [content_size],
                     "Headline": [headline],
                     "Main content": [main_content],
@@ -65,6 +69,7 @@ def get_filtered_records():
         return pd.DataFrame(
             {
                 "ID":[],
+                "Datetime": [],
                 "Content Size": [],
                 "Headline": [],
                 "Main content": [],
@@ -72,6 +77,7 @@ def get_filtered_records():
             }
         )
     
+
 def get_all_records():
     try:
         return pd.read_csv("apps/gen_marketing/content_data/content_log.csv")
@@ -79,6 +85,7 @@ def get_all_records():
         return pd.DataFrame(
             {
                 "ID":[],
+                "Datetime": [],
                 "Content Size": [],
                 "Headline": [],
                 "Main content": [],
