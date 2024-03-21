@@ -1,6 +1,11 @@
 import gradio as gr
 
-from apps.gen_marketing.CONFIG import campaign_options, content_size, business_size, industry
+from apps.gen_marketing.CONFIG import (
+    campaign_options, 
+    content_size, 
+    business_size,
+    industry,
+)
 from apps.gen_marketing.gen_marketing import (
     generate_headline,
     generate_main_content,

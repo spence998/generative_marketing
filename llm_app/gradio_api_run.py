@@ -1,8 +1,9 @@
 import gradio as gr
 
-from apps.gen_marketing.utils import remove_quote_marks
 from apps.gen_marketing.CONFIG import llm_parameters
 from apps.gen_marketing.GCP_CONFIG import GCP_llm
+from apps.gen_marketing.utils import remove_quote_marks
+
 
 def gcp_llm_response(prompt):
     instances = [{"prompt": prompt}]
@@ -17,4 +18,3 @@ def main():
     
 if __name__=="__main__":
     main()
-    
