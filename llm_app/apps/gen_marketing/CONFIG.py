@@ -1,4 +1,5 @@
-LOCAL_MODEL = True
+LOCAL_MODEL = False
+GRADIO_MODEL = True
 
 LOCAL_MODEL_PATH = r"C:\dev\mistral-7b-openorca.Q4_K_M\mistral-7b-openorca.Q4_K_M.gguf"
 LOCAL_MODEL_TYPE = "mistral"

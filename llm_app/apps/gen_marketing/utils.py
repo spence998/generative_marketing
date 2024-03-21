@@ -83,22 +83,17 @@ def get_filtered_records():
     
 
 def get_all_records():
-    # try:
-        content_log = pd.read_csv("apps/gen_marketing/content_data/content_log.csv")
-        content_log["Datetime"] = pd.to_datetime(
-            content_log["Datetime"],
-            format='%Y-%m-%d %H:%M',
-        )
-        return content_log
-    # except:
-    #     return pd.DataFrame(
-    #         {
-    #             "ID / Name":[],
-    #             "Product": [],
-    #             "Datetime": [],
-    #             "Content Size": [],
-    #             "Headline": [],
-    #             "Main content": [],
-    #             "CTA": [],
-    #         }
-    #     )
+    content_log = pd.read_csv("apps/gen_marketing/content_data/content_log.csv")
+    content_log["Datetime"] = pd.to_datetime(
+        content_log["Datetime"],
+        format='%Y-%m-%d %H:%M',
+    )
+    return content_log
+
+
+def remove_quote_marks(string):
+    while string[0] in ["\'", '\"', " ", r"\\"]:
+        string = string[1:]
+    while string[-1] in ["\'", '\"', " ", r"\\"]:
+        string = string[:-1]
+    return string

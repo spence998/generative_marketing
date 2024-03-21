@@ -1,10 +1,3 @@
-from google.cloud import aiplatform
-import vertexai
-from vertexai import preview
-from vertexai.preview.language_models import TextGenerationModel
-
-import os
-
 import gradio as gr
 
 from apps.gen_marketing.CONFIG import campaign_options, content_size, business_size, industry
@@ -13,14 +6,11 @@ from apps.gen_marketing.gen_marketing import (
     generate_main_content,
     generate_cta,
 )
-from apps.gen_marketing.utils import (
-    get_marketing_content_columns, 
+from apps.gen_marketing.utils import ( 
     update_content_log,
     filter_records,
     get_filtered_records,
 )
-
-
 
 
 def format_content_output(headline, description, cta):    
@@ -58,7 +48,6 @@ def process_data(
     return format_content_output(headline, description, cta)
 
 
-
 def main():
     interface = gr.Interface(
             fn=process_data,
@@ -90,8 +79,6 @@ def main():
                         label=" ",
                     )
         
-        
-
         with gr.Tabs():
             with gr.TabItem("Generating Content", id=0):
                 with gr.Tabs():

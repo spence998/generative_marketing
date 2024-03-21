@@ -6,7 +6,11 @@ from apps.gen_marketing.CONFIG import (
     LOCAL_MODEL,
     LOCAL_MODEL_PATH,
     LOCAL_MODEL_TYPE,
+    GRADIO_MODEL,
 )
+
+from apps.gen_marketing.utils import remove_quote_marks
+
 
 if LOCAL_MODEL:
     llm = AutoModelForCausalLM.from_pretrained(
@@ -14,6 +18,9 @@ if LOCAL_MODEL:
         model_type=LOCAL_MODEL_TYPE,
     )
     prompt_prefix = ""
+elif GRADIO_MODEL:
+    from llm_app.apps.gen_marketing.gradio_api_call import get_gradio_model_response
+    llm = get_gradio_model_response
 else:
     from GCP_CONFIG import GCP_llm
     llm = GCP_llm
@@ -25,21 +32,13 @@ else:
     
 
 def generate_llm_response(prompt):
-    if LOCAL_MODEL:
+    if LOCAL_MODEL or GRADIO_MODEL:
         response = llm(prompt)
     else:
         instances = [{"prompt": prompt}]
         response = llm.predict(instances=instances, parameters=llm_parameters).predictions[0]["content"]
     response = remove_quote_marks(response)
     return response
-
-
-def remove_quote_marks(string):
-    while string[0] in ["\'", '\"', " ", r"\\"]:
-        string = string[1:]
-    while string[-1] in ["\'", '\"', " ", r"\\"]:
-        string = string[:-1]
-    return string
 
 
 def create_marketing_content(
