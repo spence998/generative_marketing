@@ -23,7 +23,8 @@ def view_results():
         )
         session['content'] = content
         update_content_log(
-            session['id'], 
+            session['id'],
+            session['product'],
             session['material_size'],
             content["headline"], 
             content["description"], 
