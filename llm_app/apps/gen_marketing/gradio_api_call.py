@@ -1,7 +1,7 @@
 from gradio_client import Client
 
 
-GRADIO_PATH = "https://0a7edb52fdab7135e0.gradio.live"
+GRADIO_PATH = "https://d479c15e784b41ebec.gradio.live/"
 
 
 def get_gradio_model_response(prompt):

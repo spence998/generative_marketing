@@ -19,10 +19,15 @@ if LOCAL_MODEL:
     )
     prompt_prefix = ""
 elif GRADIO_MODEL:
-    from llm_app.apps.gen_marketing.gradio_api_call import get_gradio_model_response
+    from apps.gen_marketing.gradio_api_call import get_gradio_model_response
     llm = get_gradio_model_response
+    prompt_prefix = (
+        "You work for a bank creating marketing content. "
+        "The tone of voice must be quietly confident, expert "
+        "and empathetic. "
+    )
 else:
-    from GCP_CONFIG import GCP_llm
+    from apps.gen_marketing.GCP_CONFIG import GCP_llm
     llm = GCP_llm
     prompt_prefix = (
         "You work for a bank creating marketing content. "
