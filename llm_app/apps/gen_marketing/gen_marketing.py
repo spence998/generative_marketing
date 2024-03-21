@@ -1,7 +1,6 @@
 from ctransformers import AutoModelForCausalLM
 
 from apps.gen_marketing.CONFIG import (
-    content_size,
     llm_parameters,
     LOCAL_MODEL,
     LOCAL_MODEL_PATH,
