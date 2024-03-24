@@ -1,7 +1,6 @@
 from flask import  render_template, request, session
 
 
-
 from app_file import app
 from apps.gen_marketing.gen_marketing import change_llm_output
 from apps.gen_marketing.utils import update_content_log

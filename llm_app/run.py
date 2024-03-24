@@ -10,7 +10,11 @@ from apps.gen_marketing.CONFIG import (
 from apps.gen_marketing.gen_marketing import create_marketing_content
 from apps.gen_marketing.utils import update_content_log
 
-
+from pages import (
+    download,
+    previous_results,
+    view_results,
+)
 
 @app.route("/", methods=["GET", "POST"])
 def index():

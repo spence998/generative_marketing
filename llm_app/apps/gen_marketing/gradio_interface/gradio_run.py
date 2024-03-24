@@ -14,7 +14,6 @@ from apps.gen_marketing.gen_marketing import (
 from apps.gen_marketing.utils import ( 
     update_content_log,
     filter_records,
-    get_filtered_records,
 )
 
 
@@ -98,8 +97,7 @@ def main():
                     diagnosis_box = gr.Dataframe()
 
                 def submit(id_filter, content_size_data):
-                    filter_records(id_filter, content_size_data)
-                    filtered_records = get_filtered_records()
+                    filtered_records = filter_records(id_filter, content_size_data)
                     return {
                         output_col: gr.Column(visible=True),
                         diagnosis_box: filtered_records,

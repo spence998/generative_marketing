@@ -47,11 +47,6 @@ def update_content_log(
         index=None
     )
 
-    
-def get_marketing_content_columns(column):
-    marketing_content_data = pd.read_csv("apps/gen_marketing/content_data/content_log.csv")
-    return marketing_content_data[column].unique().tolist()
-
 
 def filter_records(id_filter, content_size):
     marketing_content_data = pd.read_csv("apps/gen_marketing/content_data/content_log.csv")
@@ -60,27 +55,8 @@ def filter_records(id_filter, content_size):
     
     data_filter = (id_filter & content_filter)  
     
-    marketing_content_data[data_filter].to_csv(
-        "apps/gen_marketing/content_data/content_log_filtered.csv",
-        index=None,
-    )
+    return marketing_content_data[data_filter]
 
-def get_filtered_records():
-    try:
-        return pd.read_csv("apps/gen_marketing/content_data/content_log_filtered.csv")
-    except:
-        return pd.DataFrame(
-            {
-                "ID / Name":[],
-                "Product": [],
-                "Datetime": [],
-                "Content Size": [],
-                "Headline": [],
-                "Main content": [],
-                "CTA": [],
-            }
-        )
-    
 
 def get_all_records():
     content_log = pd.read_csv("apps/gen_marketing/content_data/content_log.csv")

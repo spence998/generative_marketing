@@ -18,7 +18,7 @@ if LOCAL_MODEL:
     )
     prompt_prefix = ""
 elif GRADIO_MODEL:
-    from apps.gen_marketing.gradio_api_call import get_gradio_model_response
+    from apps.gen_marketing.gradio_interface.gradio_api_call import get_gradio_model_response
     llm = get_gradio_model_response
     prompt_prefix = (
         "You work for a bank creating marketing content. "
