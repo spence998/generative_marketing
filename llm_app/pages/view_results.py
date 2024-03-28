@@ -17,17 +17,18 @@ def view_results():
         )
         session['content'] = content
         update_content_log(
-            session['id'],
-            session['product'],
-            session['material_size'],
-            content["headline"], 
-            content["description"], 
-            content["cta"],
+            session['content_inputs']['id_name'],
+            session['content_inputs']['campaign_name'],
+            session['content_inputs']['campaign_code'],
+            session['content_inputs']['campaign_category'],
+            session['content_inputs']['product'],
+            session['content_inputs']['content_size'],
+            session['content']["headline"], 
+            session['content']["description"], 
+            session['content']["cta"],
         )
 
     return render_template(
         "generated_results.html", 
-        headline=content["headline"],
-        description=content["description"],
-        cta=content["cta"],
+        marketing_content=session["content"],
     )

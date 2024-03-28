@@ -1,39 +1,116 @@
+
+
+
+
 {% extends 'base.html' %}
 
 {% block content %}
+<link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        let arrowDown = true;
+
+        $(".chosen-select").chosen({
+            no_results_text: "Oops, nothing found!"
+        });
+
+        $('#toggle-filter-form-btn').click(function() {
+            $('.filter-form').toggle();
+
+            if (arrowDown) {
+                $(this).html('Toggle Filter ▲');
+                $('.filter-form').hide();
+            } else {
+                $(this).html('Toggle Filter ▼');
+            }
+            arrowDown = !arrowDown;
+        });
+    });
+</script>
+
+<style>
+.arrow {
+    cursor: pointer;
+}
+</style>
+
+
 <div class="container mt-5 mb-5" style="width: 99pc;">
     <div class="row align-items-center">
         <div class="boxshaddow">
             <div class="mb-3" style="text-align: center;"><h1>Content Log</h1></div>
-            <div>
+            <button id="toggle-filter-form-btn" class="btn btn-custom arrow ml-4" style="margin-top: 10px;">Toggle Filter ▼</button>
+            <div class="filter-form">
                 <form method='POST' action="{{ url_for('previous_results') }}" enctype='multipart/form-data' class="mt-4">
                     <div class="ml-5 mr-5 mb-3 d-flex align-items-end">
                         <div style="flex: 1;">
                             <label class="form-label" style="display: block; margin-bottom: 5px;">ID Filter</label>
-                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="id_filter"></textarea>
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="id_filter">{{ content_log_presets["id_filter"] }}</textarea>
                         </div>
                         <div style="flex: 1; margin-left: 10px;">
                             <label class="form-label" style="display: block; margin-bottom: 5px;">Product Filter</label>
-                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="product_filter"></textarea>
-                        </div>
-                        <div style="flex: 1; margin-left: 10px;">
-                            <label class="form-label" style="display: block; margin-bottom: 5px;">Date From</label>
-                            <input type="date" class="date_previous_results_form" name="date_from_filter">
-                        </div>
-                        <div style="flex: 1; margin-left: 10px;">
-                            <label class="form-label" style="display: block; margin-bottom: 5px;">Date To</label>
-                            <input type="date" class="date_previous_results_form" name="date_to_filter">
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="product_filter">{{ content_log_presets["product_filter"] }}</textarea>
                         </div>
                         <div style="flex: 1; margin-left: 10px;">
                             <label class="form-label" style="display: block; margin-bottom: 5px;">Content Size Filter</label>
-                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="content_size_filter"></textarea>
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="content_size_filter">{{ content_log_presets["content_size_filter"] }}</textarea>
                         </div>
-                        <button type="submit" class="btn btn-custom ml-3" style="margin-top: 10px;">Filter</button>
-                        <a href="/download" style="margin-top: 10px;">
-                            <input type="button" class="btn btn-custom ml-2" value="Download"/>
+                        <div style="flex: 1; margin-left: 10px;">
+                            <label class="form-label" style="display: block; margin-bottom: 5px;">Date From</label>
+                            <input type="date" class="date_previous_results_form" name="date_from_filter" value={{ content_log_presets['date_from_filter'] }}>
+                        </div>
+                        <div style="flex: 1; margin-left: 10px;">
+                            <label class="form-label" style="display: block; margin-bottom: 5px;">Date To</label>
+                            <input type="date" class="date_previous_results_form" name="date_to_filter" value={{ content_log_presets['date_to_filter'] }}>
+                        </div>
+                    </div>
+                    <div class="ml-5 mr-5 mb-3 d-flex align-items-end">
+                        <div style="flex: 1;">
+                            <label class="form-label" style="display: block; margin-bottom: 5px;">Campaign Name</label>
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="campaign_name_filter">{{ content_log_presets["campaign_name_filter"] }}</textarea>
+                        </div>
+                        <div style="flex: 1; margin-left: 10px;">
+                            <label class="form-label" style="display: block; margin-bottom: 5px;">Campaign Code</label>
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="campaign_code_filter">{{ content_log_presets["campaign_code_filter"] }}</textarea>
+                        </div>
+                        <div style="flex: 1; margin-left: 10px;">
+                            <label class="form-label" style="display: block; margin-bottom: 5px;">Campaign Category</label>
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="campaign_category_filter">{{ content_log_presets["campaign_category_filter"] }}</textarea>
+                        </div>
+                        <div style="flex: 1; margin-left: 10px;">
+                            <label class="form-label" style="display: block; margin-bottom: 5px;">Approved</label>
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="approval_filter" type="checkbox">{{ content_log_presets["approval_filter"] }}</textarea>
+                        </div>
+                        <div style="flex: 1; margin-left: 10px;">
+                            <label class="form-label" style="display: block; margin-bottom: 5px;">Live</label>
+                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="live_filter" type="checkbox">{{ content_log_presets["live_filter"] }}</textarea>
+                        </div>
+                    </div>
+                    <div class="ml-5 mr-5 mb-3 d-flex align-items-end">
+                        <a href="/content_log/reset_presets" class="ml-auto mr-3">
+                            <input type="button" class="btn btn-custom" value="Reset"/>
                         </a>
+                        <div>
+                            <button type="submit" class="btn btn-custom ml-3 ml-auto">Filter</button>
+                        </div>
                     </div>
                 </form>
+            </div>
+            <div class="mb-3 mt-3 d-flex align-items-center">
+                <form class="ml-5" method='POST' action="{{ url_for('previous_results') }}">
+                    <select data-placeholder="None Selected" multiple class="chosen-select" name="content_log_cols" style="width: 50cap;">
+                        <option value=""></option>
+                        {% for col in all_content_log_cols %}
+                            <option {% if col in selected_cols %}selected="selected"{% endif %} >{{ col }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="btn btn-custom ml-3">Select Columns</button>
+                </form>
+                <a href="/content_log/download" class="ml-auto">
+                    <input type="button" class="btn btn-custom ml-3 mr-5" value="Download"/>
+                </a>
             </div>
             <table id="myTable" class="display">
                 {{ table|safe }}

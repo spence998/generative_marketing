@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, url_for
 
-from app_file import app
+from app_file import app, setup_app
 from apps.gen_marketing.CONFIG import (
     business_size,
     campaign_options,
@@ -11,32 +11,46 @@ from apps.gen_marketing.gen_marketing import create_marketing_content
 from apps.gen_marketing.utils import update_content_log
 
 from pages import (
-    download,
     previous_results,
     view_results,
+    reset_presets,
+    download_file,
 )
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    setup_app()
+
     if request.method == "POST":
-        content = create_marketing_content(
+        session['content'] = create_marketing_content(
             product=campaign_options[request.form["product"]],
-            material_size=content_size[request.form["material_size"]],
+            material_size=content_size[request.form["content_size"]],
             business_size=request.form["business_size"],
             industry=request.form["industry"],
             aim=request.form["aim"],
         )
-        session['content'] = content
-        session['id'] = request.form["id_name"]
-        session['product'] = request.form["product"]
-        session['material_size'] = request.form["material_size"]
+        session['content_inputs'] = {
+            "id_name": request.form["id_name"],
+            "campaign_name": request.form["campaign_name"],
+            "campaign_code": request.form["campaign_code"],
+            "campaign_category": request.form["campaign_category"],
+            "product": request.form["product"],
+            "content_size": request.form["content_size"],
+            "business_size": request.form["business_size"],
+            "industry": request.form["industry"],
+            "aim": request.form["aim"],
+        }
         update_content_log(
-            session['id'],
-            session['product'],
-            session['material_size'],
-            content["headline"], 
-            content["description"], 
-            content["cta"],
+            session['content_inputs']['id_name'],
+            session['content_inputs']['campaign_name'],
+            session['content_inputs']['campaign_code'],
+            session['content_inputs']['campaign_category'],
+            session['content_inputs']['product'],
+            session['content_inputs']['content_size'],
+            session["content"]["headline"], 
+            session["content"]["description"], 
+            session["content"]["cta"],
         )
         return redirect(url_for('view_results'))
     else:

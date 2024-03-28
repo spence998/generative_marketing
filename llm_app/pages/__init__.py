@@ -1,3 +1,2 @@
-from pages.download import downloadFile
-from pages.previous_results import previous_results
+from pages.content_log import previous_results, reset_presets, download_file
 from pages.view_results import view_results

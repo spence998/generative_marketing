@@ -15,6 +15,24 @@
           </div>
           <div class="mb-3">
             <div class="d-flex justify-content-between">
+              <label class="form-label form-label-text">Campaign Name:</label>
+              <textarea class="form_input form-control form-control-sm " style="width: 132px; outline: none !important; box-shadow: none;" placeholder="Any..." rows="1" name="campaign_name"></textarea>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <label class="form-label form-label-text">Campaign Code:</label>
+              <textarea class="form_input form-control form-control-sm " style="width: 132px; outline: none !important; box-shadow: none;" placeholder="Any..." rows="1" name="campaign_code"></textarea>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <label class="form-label form-label-text">Campaign category:</label>
+              <textarea class="form_input form-control form-control-sm " style="width: 132px; outline: none !important; box-shadow: none;" placeholder="Any..." rows="1" name="campaign_category"></textarea>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
               <label class="form-label form-label-text">Product: </label>
               <select class="form-select form_input" name="product">
                 {% for topic in campaign_options %}
@@ -26,7 +44,7 @@
           <div class="mb-3">
             <div class="d-flex justify-content-between">
               <label class="form-label form-label-text">Content Size:</label>
-              <select class="form-select form_input" name="material_size">
+              <select class="form-select form_input" name="content_size">
                 {% for size in content_size %}
                   <option {% if size=="Medium" %}selected="selected"{% endif %} >{{ size }}</option>
                 {% endfor %}
@@ -54,7 +72,7 @@
             <div class="mb-2">(E.g. "To attract customers for opening additional banks accounts online")</div>
             <textarea class="form_input form-control" style="outline: none !important; box-shadow: none;" name="aim" placeholder="Aim..." rows="4"></textarea>
           </div>
-          <a href="/previous-results">
+          <a href="/content_log">
             <input type="button" class="btn btn-custom" value="View Previous Content"/>
           </a>
           <button type="submit" class="btn btn-custom" style="float: right;">Submit</button>

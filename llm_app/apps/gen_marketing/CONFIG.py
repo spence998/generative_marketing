@@ -1,4 +1,4 @@
-LOCAL_MODEL = False
+LOCAL_MODEL = True
 GRADIO_MODEL = True
 
 LOCAL_MODEL_PATH = r"C:\dev\mistral-7b-openorca.Q4_K_M\mistral-7b-openorca.Q4_K_M.gguf"
@@ -56,4 +56,13 @@ business_size = [
 industry = [
     "Farming",
     "Any",
+]
+
+content_log_cols = [
+    "ID / Name",
+    "Product",
+    "Datetime",
+    "Headline",
+    "Main content",
+    "CTA",
 ]
