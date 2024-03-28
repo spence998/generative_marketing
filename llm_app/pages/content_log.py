@@ -40,7 +40,6 @@ def previous_results():
         }
 
 
-
         if request.form["id_filter"] == "":
             id_filter = pd.Series([True]*content_log.shape[0])
         else:
@@ -145,6 +144,5 @@ def download_file():
 @app.route('/content_log/toggle_filter', methods=['POST'])
 def toggle_filter():
     data = request.data.decode('utf-8')
-    print(f"toggle filter: {data}")
     session["content_log_filter_toggle"] = data
     return 'Data received successfully', 200
