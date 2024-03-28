@@ -1,5 +1,13 @@
 import pandas as pd
-from flask import render_template, request, session, redirect, url_for, send_file
+from flask import (
+    render_template,
+    request,
+    session,
+    redirect,
+    url_for,
+    send_file,
+    jsonify,
+)
 
 from app_file import app, setup_app
 from apps.gen_marketing.utils import get_all_records
@@ -107,6 +115,7 @@ def previous_results():
         all_content_log_cols=all_content_log_cols,
         selected_cols=content_log_cols,
         content_log_presets=session["content_log_presets"],
+        toggle_filter=session["content_log_filter_toggle"],
     )
 
 
@@ -131,3 +140,11 @@ def reset_presets():
 def download_file():
     path = "apps/gen_marketing/content_data/content_log.csv"
     return send_file(path, as_attachment=True)
+
+
+@app.route('/content_log/toggle_filter', methods=['POST'])
+def toggle_filter():
+    data = request.data.decode('utf-8')
+    print(f"toggle filter: {data}")
+    session["content_log_filter_toggle"] = data
+    return 'Data received successfully', 200

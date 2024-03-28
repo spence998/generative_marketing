@@ -20,3 +20,4 @@ def setup_app():
         "approval_filter": "",
         "live_filter": "",
     }
+    session["content_log_filter_toggle"] = "closed"

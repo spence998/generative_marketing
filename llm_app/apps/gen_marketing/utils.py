@@ -28,6 +28,8 @@ def update_content_log(
                 "Headline": [],
                 "Main content": [],
                 "CTA": [],
+                "Approved": [],
+                "Live": [],
             }
         )
     if id_name == "":
@@ -47,6 +49,8 @@ def update_content_log(
                     "Headline": [headline],
                     "Main content": [main_content],
                     "CTA": [cta],
+                    "Approved": ["No"],
+                    "Live": ["No"],
                 }
             )
         ]
