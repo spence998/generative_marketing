@@ -104,11 +104,19 @@
                         </div>
                         <div style="flex: 1; margin-left: 10px;">
                             <label class="form-label" style="display: block; margin-bottom: 5px;">Approved</label>
-                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="approval_filter" type="checkbox">{{ content_log_presets["approval_filter"] }}</textarea>
+                            <select class="form_input form-control form_input" name="approval_filter" rows="1">
+                                <option {% if content_log_presets["approval_filter"]=="Any" %}selected="selected"{% endif %}>Any</option>
+                                <option {% if content_log_presets["approval_filter"]=="Yes" %}selected="selected"{% endif %}>Yes</option>
+                                <option {% if content_log_presets["approval_filter"]=="No" %}selected="selected"{% endif %}>No</option>
+                            </select>
                         </div>
                         <div style="flex: 1; margin-left: 10px;">
-                            <label class="form-label" style="display: block; margin-bottom: 5px;">Live</label>
-                            <textarea class="form_input form-control" placeholder="Any..." rows="1" name="live_filter" type="checkbox">{{ content_log_presets["live_filter"] }}</textarea>
+                            <label class="form-label " style="display: block; margin-bottom: 5px;">Live</label>
+                            <select class="form_input form-control form_input" name="live_filter" rows="1" value={{ content_log_presets["live_filter"] }}>
+                                  <option {% if content_log_presets["live_filter"]=="Any" %}selected="selected"{% endif %}>Any</option>
+                                  <option {% if content_log_presets["live_filter"]=="Yes" %}selected="selected"{% endif %}>Yes</option>
+                                  <option {% if content_log_presets["live_filter"]=="No" %}selected="selected"{% endif %}>No</option>
+                              </select>
                         </div>
                     </div>
                     <div class="ml-5 mr-5 mb-3 d-flex align-items-end">
