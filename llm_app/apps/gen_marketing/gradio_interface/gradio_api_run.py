@@ -1,5 +1,9 @@
 import gradio as gr
 
+# Fix for if imports aren't working
+# import sys
+# sys.path.append('C:\dev\generative_marketing\llm_app')
+
 from apps.gen_marketing.CONFIG import llm_parameters
 from apps.gen_marketing.GCP_CONFIG import GCP_llm
 from apps.gen_marketing.utils import remove_quote_marks
