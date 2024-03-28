@@ -80,12 +80,12 @@ def previous_results():
         else:
             campaign_category_filter = (content_log["Campaign category"] == request.form["campaign_category_filter"])
         
-        if request.form["approval_filter"] == "":
+        if request.form["approval_filter"] == "Any":
             approval_filter = pd.Series([True]*content_log.shape[0])
         else:
             approval_filter = (content_log["Approved"] == request.form["approval_filter"])
 
-        if request.form["live_filter"] == "":
+        if request.form["live_filter"] == "Any":
             live_filter = pd.Series([True]*content_log.shape[0])
         else:
             live_filter = (content_log["Live"] == request.form["live_filter"])
