@@ -13,8 +13,6 @@ from apps.gen_marketing.utils import update_content_log
 from pages import (
     previous_results,
     view_results,
-    reset_presets,
-    download_file,
 )
 
 
